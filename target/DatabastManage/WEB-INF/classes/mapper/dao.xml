@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为UserDao接口方法提供sql语句配置 -->
+<mapper namespace="com.data.dao.UserDao">
+
+    <select id="findAll" resultType="User">
+        select * from jzyx_send_int_ready
+    </select>
+    
+    <delete id="deleteData" parameterType="java.lang.Integer">
+        delete from jzyx_send_int_ready
+        where
+        id = #{id}
+    </delete>
+    
+    <insert id="save" parameterType="com.data.model.User">
+      insert into jzyx_send_int_ready(create_date,plan_send_num,latn_name,area_id,tsp_name,call_lang,age_min,age_max,avg_min_fee,avg_max_fee,avg_stream,send_type,active_name,staff_type,staff_id,sheet_chnl,is_complete,is_force)
+      values(STR_TO_DATE(#{create_date},'%Y-%m-%d'),#{plan_send_num},#{latn_name},#{area_id},#{tsp_name},#{call_lang},#{age_min},#{age_max},#{avg_min_fee},#{avg_max_fee},#{avg_stream},#{send_type},#{active_name},#{staff_type},#{staff_id},#{sheet_chnl},#{is_complete},#{is_force})
+    </insert>
+
+    <update id="updateData" parameterType="com.data.model.User">
+        update jzyx_send_int_ready SET
+        plan_send_num = #{plan_send_num},
+        latn_name = #{latn_name},
+        area_id = #{area_id},
+        tsp_name = #{tsp_name},
+        call_lang = #{call_lang},
+        age_min = #{age_min},
+        age_max = #{age_max},
+        avg_min_fee = #{avg_min_fee},
+        avg_max_fee = #{avg_max_fee},
+        avg_stream = #{avg_stream},
+        send_type = #{send_type},
+        active_name = #{active_name},
+        staff_type = #{staff_type},
+        staff_id = #{staff_id},
+        sheet_chnl = #{sheet_chnl},
+        is_complete = #{is_complete},
+        is_force = #{is_force}
+        where id = #{id}
+    </update>
+
+</mapper>
